@@ -1,36 +1,36 @@
-C# Extension for StarUML 2
+TypeScript Extension for StarUML 2
 ============================
 
-This extension for StarUML(http://staruml.io) support to generate C# code from UML model and to reverse Java code to UML model. Install this extension from Extension Manager of StarUML. It is based on C# 2.0 specification.
+This extension for StarUML(http://staruml.io) support to generate TypeScript code from UML model and to reverse Java code to UML model. Install this extension from Extension Manager of StarUML. It is based on TypeScript 2.0 specification.
 
-C# Code Generation
+TypeScript Code Generation
 --------------------
 
-1. Click the menu (`Tools > C# > Generate Code...`)
-2. Select a base model (or package) that will be generated to C#.
-3. Select a folder where generated C# source files will be placed.
+1. Click the menu (`Tools > TypeScript > Generate Code...`)
+2. Select a base model (or package) that will be generated to TypeScript.
+3. Select a folder where generated TypeScript source files will be placed.
 
 Belows are the rules to convert from UML model elements to Java source codes.
 
 ### UMLPackage
 
-* converted to _C# namespace_ (as a folder).
+* converted to _TypeScript namespace_ (as a folder).
 
 ### UMLClass
 
-* converted to _C# Class_. (as a separate `.cs` file)
+* converted to _TypeScript Class_. (as a separate `.ts` file)
 * `visibility` to one of modifiers `public`, `protected`, `private` and none.
 * `isAbstract` property to `abstract` modifier.
 * `isFinalSpecialization` and `isLeaf` property to `sealed` modifier.
 * Default constructor is generated.
 * All contained types (_UMLClass_, _UMLInterface_, _UMLEnumeration_) are generated as inner type definition.
-* Documentation property to C#Doc comment.
-* Annotation Type is converted to C# attribute class which extends System.Attribute and postfix of class is Attribute.
+* Documentation property to TypeScriptDoc comment.
+* Annotation Type is converted to TypeScript attribute class which extends System.Attribute and postfix of class is Attribute.
   (cf. class testAttribute:System.Attribute)
 
 ### UMLAttribute
 
-* converted to _C# Field_.
+* converted to _TypeScript Field_.
 * `visibility` property to one of modifiers `public`, `protected`, `private` and none.
 * `name` property to field identifier.
 * `type` property to field type.
@@ -38,37 +38,37 @@ Belows are the rules to convert from UML model elements to Java source codes.
 * `isStatic` property to `static` modifier.
 * `isLeaf` property to `sealed` modifier.
 * `defaultValue` property to initial value.
-* Documentation property to C#Doc comment.
+* Documentation property to TypeScriptDoc comment.
 
 ### UMLOperation
 
-* converted to _C# Methods_.
+* converted to _TypeScript Methods_.
 * `visibility` property to one of modifiers `public`, `protected`, `private` and none.
 * `name` property to method identifier.
 * `isAbstract` property to `abstract` modifier.
 * `isStatic` property to `static` modifier.
-* _UMLParameter_ to _C# Method Parameters_.
+* _UMLParameter_ to _TypeScript Method Parameters_.
 * _UMLParameter_'s name property to parameter identifier.
 * _UMLParameter_'s type property to type of parameter.
 * _UMLParameter_ with `direction` = `return` to return type of method. When no return parameter, `void` is used.
 * _UMLParameter_ with `isReadOnly` = `true` to `sealed` modifier of parameter.
-* Documentation property to C#Doc comment.
+* Documentation property to TypeScriptDoc comment.
 
 ### UMLInterface
 
-* converted to _C# Interface_.  (as a separate `.cs` file)
+* converted to _TypeScript Interface_.  (as a separate `.ts` file)
 * `visibility` property to one of modifiers `public`, `protected`, `private` and none.
-* Documentation property to C#Doc comment.
+* Documentation property to TypeScriptDoc comment.
 
 ### UMLEnumeration
 
-* converted to _C# enum_.  (as a separate `.cs` file)
+* converted to _TypeScript enum_.  (as a separate `.ts` file)
 * `visibility` property to one of modifiers `public`, `protected`, `private` and none.
 * _UMLEnumerationLiteral_ to literals of enum.
 
 ### UMLAssociationEnd
 
-* converted to _C# Field_.
+* converted to _TypeScript Field_.
 * `visibility` property to one of modifiers `public`, `protected`, `private` and none.
 * `name` property to field identifier.
 * `type` property to field type.
@@ -78,30 +78,30 @@ Belows are the rules to convert from UML model elements to Java source codes.
 
 ### UMLGeneralization
 
-* converted to _C# Extends_ (`:`).
+* converted to _TypeScript Extends_ (`:`).
 * Allowed only for _UMLClass_ to _UMLClass_, and _UMLInterface_ to _UMLInterface_.
 
 ### UMLInterfaceRealization
 
-* converted to _C# Implements_ (`:`).
+* converted to _TypeScript Implements_ (`:`).
 * Allowed only for _UMLClass_ to _UMLInterface_.
 
 
 
-C# Reverse Engineering
+TypeScript Reverse Engineering
 ------------------------
 
-1. Click the menu (`Tools > C# > Reverse Code...`)
-2. Select a folder containing C# source files to be converted to UML model elements.
+1. Click the menu (`Tools > TypeScript > Reverse Code...`)
+2. Select a folder containing TypeScript source files to be converted to UML model elements.
 3. `CsharpReverse` model will be created in the Project.
 
-Belows are the rules to convert from C# source code to UML model elements.
+Belows are the rules to convert from TypeScript source code to UML model elements.
 
-### C# Namespace
+### TypeScript Namespace
 
 * converted to _UMLPackage_.
 
-### C# Class
+### TypeScript Class
 
 * converted to _UMLClass_.
 * Class name to `name` property.
@@ -113,7 +113,7 @@ Belows are the rules to convert from C# source code to UML model elements.
 * All contained types (_UMLClass_, _UMLInterface_, _UMLEnumeration_) are generated as inner type definition.
 
 
-### C# Field (to UMLAttribute)
+### TypeScript Field (to UMLAttribute)
 
 * converted to _UMLAttribute_ if __"Use Association"__ is __off__ in Preferences.
 * Field type to `type` property.
@@ -128,7 +128,7 @@ Belows are the rules to convert from C# source code to UML model elements.
 * `sealed` modifier to `isLeaf` and `isReadOnly` property.
 * Initial value to `defaultValue` property.
 
-### C# Field (to UMLAssociation)
+### TypeScript Field (to UMLAssociation)
 
 * converted to (Directed) _UMLAssociation_ if __"Use Association"__ is __on__ in Preferences and there is a UML type element (_UMLClass_, _UMLInterface_, or _UMLEnumeration_) correspond to the field type.
 * Field type to `end2.reference` property.
@@ -139,7 +139,7 @@ Belows are the rules to convert from C# source code to UML model elements.
 
 * Access modifier `public`, `protected` and  `private` to `visibility` property.
 
-### C# Method
+### TypeScript Method
 
 * converted to _UMLOperation_.
 * Type parameters to _UMLTemplateParameter_.
@@ -148,14 +148,14 @@ Belows are the rules to convert from C# source code to UML model elements.
 * `abstract` modifier to `isAbstract` property.
 * `sealed` modifier to `isLeaf` property.
 
-### C# Interface
+### TypeScript Interface
 
 * converted to _UMLInterface_.
 * Class name to `name` property.
 * Type parameters to _UMLTemplateParameter_.
 * Access modifier `public`, `protected` and  `private` to `visibility` property.
 
-### C# Enum
+### TypeScript Enum
 
 * converted to _UMLEnumeration_.
 * Enum name to `name` property.
@@ -163,7 +163,7 @@ Belows are the rules to convert from C# source code to UML model elements.
 * Access modifier `public`, `protected` and  `private` to `visibility` property.
 * Enum constants are converted to _UMLEnumerationLiteral_.
 
-### C# AnnotationType
+### TypeScript AnnotationType
 
 * converted to _UMLClass_ with stereotype `<<annotationType>>`.
 * Annotation type elements to _UMLOperation_. (Default value to a Tag with `name="default"`).

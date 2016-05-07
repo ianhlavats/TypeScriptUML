@@ -41,20 +41,20 @@ define(function (require, exports, module) {
         UML                 = app.getModule("uml/UML");
 
     var CodeGenUtils        = require("CodeGenUtils"),
-        CsharpPreferences   = require("CsharpPreferences"),
-        CsharpCodeGenerator = require("CsharpCodeGenerator"),
-        CsharpReverseEngineer = require("CsharpReverseEngineer");
+        TypeScriptPreferences   = require("TypeScriptPreferences"),
+        TypeScriptCodeGenerator = require("TypeScriptCodeGenerator"),
+        TypeScriptReverseEngineer = require("TypeScriptReverseEngineer");
 
     /**
      * Commands IDs
      */
-    var CMD_CSHARP              = "csharp",
-        CMD_CSHARP_GENERATE     = "csharp.generate",
-        CMD_CSHARP_REVERSE      = "csharp.reverse",
-        CMD_CSHARP_CONFIGURE    = "csharp.configure";
+    var CMD_TYPESCRIPT              = "typescript",
+        CMD_TYPESCRIPT_GENERATE     = "typescript.generate",
+        CMD_TYPESCRIPT_REVERSE      = "typescript.reverse",
+        CMD_TYPESCRIPT_CONFIGURE    = "typescript.configure";
 
     /**
-     * Command Handler for C# Generate
+     * Command Handler for TypeScript Generate
      *
      * @param {Element} base
      * @param {string} path
@@ -65,7 +65,7 @@ define(function (require, exports, module) {
         var result = new $.Deferred();
 
         // If options is not passed, get from preference
-        options = options || CsharpPreferences.getGenOptions();
+        options = options || TypeScriptPreferences.getGenOptions();
 
         // If base is not assigned, popup ElementPicker
         if (!base) {
@@ -80,7 +80,7 @@ define(function (require, exports, module) {
                                 if (!err) {
                                     if (files.length > 0) {
                                         path = files[0];
-                                        CsharpCodeGenerator.generate(base, path, options).then(result.resolve, result.reject);
+                                        TypeScriptCodeGenerator.generate(base, path, options).then(result.resolve, result.reject);
                                     } else {
                                         result.reject(FileSystem.USER_CANCELED);
                                     }
@@ -89,7 +89,7 @@ define(function (require, exports, module) {
                                 }
                             });
                         } else {
-                            CsharpCodeGenerator.generate(base, path, options).then(result.resolve, result.reject);
+                            TypeScriptCodeGenerator.generate(base, path, options).then(result.resolve, result.reject);
                         }
                     } else {
                         result.reject();
@@ -102,7 +102,7 @@ define(function (require, exports, module) {
                     if (!err) {
                         if (files.length > 0) {
                             path = files[0];
-                            CsharpCodeGenerator.generate(base, path, options).then(result.resolve, result.reject);
+                            TypeScriptCodeGenerator.generate(base, path, options).then(result.resolve, result.reject);
                         } else {
                             result.reject(FileSystem.USER_CANCELED);
                         }
@@ -111,7 +111,7 @@ define(function (require, exports, module) {
                     }
                 });
             } else {
-                CsharpCodeGenerator.generate(base, path, options).then(result.resolve, result.reject);
+                TypeScriptCodeGenerator.generate(base, path, options).then(result.resolve, result.reject);
             }
         }
         return result.promise();
@@ -119,7 +119,7 @@ define(function (require, exports, module) {
 
 
     /**
-     * Command Handler for C# Reverse
+     * Command Handler for TypeScript Reverse
      *
      * @param {string} basePath
      * @param {Object} options
@@ -129,7 +129,7 @@ define(function (require, exports, module) {
         var result = new $.Deferred();
 
         // If options is not passed, get from preference
-        options = CsharpPreferences.getRevOptions();
+        options = TypeScriptPreferences.getRevOptions();
 
         // If basePath is not assigned, popup Open Dialog to select a folder
         if (!basePath) {
@@ -137,7 +137,7 @@ define(function (require, exports, module) {
                 if (!err) {
                     if (files.length > 0) {
                         basePath = files[0];
-                        CsharpReverseEngineer.analyze(basePath, options).then(result.resolve, result.reject);
+                        TypeScriptReverseEngineer.analyze(basePath, options).then(result.resolve, result.reject);
                     } else {
                         result.reject(FileSystem.USER_CANCELED);
                     }
@@ -150,20 +150,20 @@ define(function (require, exports, module) {
     }
 
     function _handleConfigure() {
-        CommandManager.execute(Commands.FILE_PREFERENCES, CsharpPreferences.getId());
+        CommandManager.execute(Commands.FILE_PREFERENCES, TypeScriptPreferences.getId());
     }
 
     // Register Commands
-    CommandManager.register("C#",               CMD_CSHARP,           CommandManager.doNothing);
-    CommandManager.register("Generate Code...", CMD_CSHARP_GENERATE,  _handleGenerate);
-    CommandManager.register("Reverse Code...",  CMD_CSHARP_REVERSE,   _handleReverse);
-    CommandManager.register("Configure...",     CMD_CSHARP_CONFIGURE, _handleConfigure);
+    CommandManager.register("TypeScript",               CMD_TYPESCRIPT,           CommandManager.doNothing);
+    CommandManager.register("Generate Code...", CMD_TYPESCRIPT_GENERATE,  _handleGenerate);
+    CommandManager.register("Reverse Code...",  CMD_TYPESCRIPT_REVERSE,   _handleReverse);
+    CommandManager.register("Configure...",     CMD_TYPESCRIPT_CONFIGURE, _handleConfigure);
 
     var menu, menuItem;
     menu = MenuManager.getMenu(Commands.TOOLS);
-    menuItem = menu.addMenuItem(CMD_CSHARP);
-    menuItem.addMenuItem(CMD_CSHARP_GENERATE);
-    menuItem.addMenuItem(CMD_CSHARP_REVERSE);
+    menuItem = menu.addMenuItem(CMD_TYPESCRIPT);
+    menuItem.addMenuItem(CMD_TYPESCRIPT_GENERATE);
+    menuItem.addMenuItem(CMD_TYPESCRIPT_REVERSE);
     menuItem.addMenuDivider();
-    menuItem.addMenuItem(CMD_CSHARP_CONFIGURE);
+    menuItem.addMenuItem(CMD_TYPESCRIPT_CONFIGURE);
 });

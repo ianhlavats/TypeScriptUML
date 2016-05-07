@@ -22,60 +22,60 @@ define(function (require, exports, module) {
         Core              = app.getModule("core/Core"),
         PreferenceManager = app.getModule("core/PreferenceManager");
 
-    var preferenceId = "csharp";
+    var preferenceId = "typescript";
 
-    var csharpPreferences = {
-        "csharp.gen": {
-            text: "C# Code Generation",
+    var typescriptPreferences = {
+        "typescript.gen": {
+            text: "TypeScript Code Generation",
             type: "Section"
         },
-        "csharp.gen.csharpDoc": {
-            text: "C# Doc",
-            description: "Generate C# Doc comments.",
+        "typescript.gen.typescriptDoc": {
+            text: "TypeScript Doc",
+            description: "Generate TypeScript Doc comments.",
             type: "Check",
             default: true
         },
-        "csharp.gen.useTab": {
+        "typescript.gen.useTab": {
             text: "Use Tab",
             description: "Use Tab for indentation instead of spaces.",
             type: "Check",
             default: false
         },
-        "csharp.gen.indentSpaces": {
+        "typescript.gen.indentSpaces": {
             text: "Indent Spaces",
             description: "Number of spaces for indentation.",
             type: "Number",
             default: 4
         },
-        "csharp.rev": {
-            text: "C# Reverse Engineering",
+        "typescript.rev": {
+            text: "TypeScript Reverse Engineering",
             type: "Section"
         },
-        "csharp.rev.association": {
+        "typescript.rev.association": {
             text: "Use Association",
-            description: "Reverse C# Fields as UML Associations.",
+            description: "Reverse TypeScript Fields as UML Associations.",
             type: "Check",
             default: true
         },
-        "csharp.rev.publicOnly": {
+        "typescript.rev.publicOnly": {
             text: "Public Only",
             description: "Reverse public members only.",
             type: "Check",
             default: false
         },
-        "csharp.rev.typeHierarchy": {
+        "typescript.rev.typeHierarchy": {
             text: "Type Hierarchy Diagram",
             description: "Create a type hierarchy diagram for all classes and interfaces",
             type: "Check",
             default: true
         },
-        "csharp.rev.packageOverview": {
+        "typescript.rev.packageOverview": {
             text: "Package Overview Diagram",
             description: "Create overview diagram for each package",
             type: "Check",
             default: true
         },
-        "csharp.rev.packageStructure": {
+        "typescript.rev.packageStructure": {
             text: "Package Structure Diagram",
             description: "Create a package structure diagram for all packages",
             type: "Check",
@@ -89,24 +89,24 @@ define(function (require, exports, module) {
 
     function getGenOptions() {
         return {
-            csharpDoc     : PreferenceManager.get("csharp.gen.csharpDoc"),
-            useTab        : PreferenceManager.get("csharp.gen.useTab"),
-            indentSpaces  : PreferenceManager.get("csharp.gen.indentSpaces")
+            typescriptDoc     : PreferenceManager.get("typescript.gen.typescriptDoc"),
+            useTab        : PreferenceManager.get("typescript.gen.useTab"),
+            indentSpaces  : PreferenceManager.get("typescript.gen.indentSpaces")
         };
     }
 
     function getRevOptions() {
         return {
-            association      : PreferenceManager.get("csharp.rev.association"),
-            publicOnly       : PreferenceManager.get("csharp.rev.publicOnly"),
-            typeHierarchy    : PreferenceManager.get("csharp.rev.typeHierarchy"),
-            packageOverview  : PreferenceManager.get("csharp.rev.packageOverview"),
-            packageStructure : PreferenceManager.get("csharp.rev.packageStructure")
+            association      : PreferenceManager.get("typescript.rev.association"),
+            publicOnly       : PreferenceManager.get("typescript.rev.publicOnly"),
+            typeHierarchy    : PreferenceManager.get("typescript.rev.typeHierarchy"),
+            packageOverview  : PreferenceManager.get("typescript.rev.packageOverview"),
+            packageStructure : PreferenceManager.get("typescript.rev.packageStructure")
         };
     }
 
     AppInit.htmlReady(function () {
-        PreferenceManager.register(preferenceId, "C#", csharpPreferences);
+        PreferenceManager.register(preferenceId, "TypeScript", typescriptPreferences);
     });
 
     exports.getId         = getId;

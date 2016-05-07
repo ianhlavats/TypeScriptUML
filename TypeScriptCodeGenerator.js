@@ -121,7 +121,7 @@ define(function (require, exports, module) {
                     elem.name = elem.name + "Attribute";
                 }
 
-                fullPath = path + "/" + elem.name + ".cs";
+                fullPath = path + "/" + elem.name + ".ts";
                 codeWriter = new CodeGenUtils.CodeWriter(this.getIndentString(options));
                 codeWriter.writeLine();
                 codeWriter.writeLine("using System;");
@@ -135,7 +135,7 @@ define(function (require, exports, module) {
                 FileUtils.writeText(file, codeWriter.getData(), true).then(result.resolve, result.reject);
             } else {
                 // Class
-                fullPath = path + "/" + elem.name + ".cs";
+                fullPath = path + "/" + elem.name + ".ts";
                 console.log('Class generate' + fullPath);
 
                 codeWriter = new CodeGenUtils.CodeWriter(this.getIndentString(options));
@@ -152,7 +152,7 @@ define(function (require, exports, module) {
             }
         } else if (elem instanceof type.UMLInterface) {
             // Interface
-            fullPath = path + "/" + elem.name + ".cs";
+            fullPath = path + "/" + elem.name + ".ts";
             console.log('Interface generate' + fullPath);
 
             codeWriter = new CodeGenUtils.CodeWriter(this.getIndentString(options));
@@ -169,7 +169,7 @@ define(function (require, exports, module) {
 
         } else if (elem instanceof type.UMLEnumeration) {
         // Enum
-            fullPath = path + "/" + elem.name + ".cs";
+            fullPath = path + "/" + elem.name + ".ts";
             codeWriter = new CodeGenUtils.CodeWriter(this.getIndentString(options));
             codeWriter.writeLine();
 //            this.writeEnum(codeWriter, elem, options);
@@ -770,7 +770,7 @@ define(function (require, exports, module) {
     CsharpCodeGenerator.prototype.writeDoc = function (codeWriter, text, options) {
 
         var i, len, lines;
-        if (options.csharpDoc && _.isString(text)) {
+        if (options.tsharpDoc && _.isString(text)) {
             console.log("write Doc");
             lines = text.trim().split("\n");
             codeWriter.writeLine("/**");

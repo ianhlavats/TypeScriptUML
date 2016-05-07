@@ -1,9 +1,9 @@
 {
-    "name": "staruml.csharp",
-    "title": "C#",
-    "description": "C# code generation and reverse engineering.",
-    "homepage": "https://github.com/staruml/CSharp",
-    "keywords": ["csharp"],
+    "name": "ianhlavats.typescriptuml",
+    "title": "TypeScriptUML",
+    "description": "TypeScript code generation and reverse engineering.",
+    "homepage": "https://github.com/ianhlavats/TypeScriptUML",
+    "keywords": ["typescript"],
     "version": "0.9.1",
     "author": {
         "name": "Dongjoon Lee",

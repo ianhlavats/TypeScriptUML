@@ -1,3 +1,3 @@
 #!/bin/bash
 
-jison "$PWD/csharp.jison" "$PWD/csharp.jisonlex"  -t -p lalr > jisonOutput.txt
+jison "$PWD/typescript.jison" "$PWD/typescript.jisonlex"  -t -p lalr > jisonOutput.txt
