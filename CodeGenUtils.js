@@ -29,7 +29,7 @@ define(function (require, exports, module) {
      * @constructor
      */
     function CodeWriter(indentString) {
-        
+
         /** @member {Array.<string>} lines */
         this.lines = [];
 
@@ -42,34 +42,34 @@ define(function (require, exports, module) {
 
     /**
      * Indent
-     */    
+     */
     CodeWriter.prototype.indent = function () {
         this.indentations.push(this.indentString);
     };
 
     /**
      * Outdent
-     */    
+     */
     CodeWriter.prototype.outdent = function () {
-        this.indentations.splice(this.indentations.length-1, 1);
+        this.indentations.splice(this.indentations.length - 1, 1);
     };
 
     /**
      * Write a line
      * @param {string} line
-     */    
+     */
     CodeWriter.prototype.writeLine = function (line) {
         if (line) {
-            this.lines.push(this.indentations.join("") + line);    
+            this.lines.push(this.indentations.join("") + line);
         } else {
             this.lines.push("");
-        }        
+        }
     };
 
     /**
      * Return as all string data
      * @return {string}
-     */    
+     */
     CodeWriter.prototype.getData = function () {
         return this.lines.join("\n");
     };

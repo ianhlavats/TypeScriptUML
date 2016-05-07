@@ -27,31 +27,31 @@
 define(function (require, exports, module) {
     "use strict";
 
-    var AppInit             = app.getModule("utils/AppInit"),
-        Repository          = app.getModule("core/Repository"),
-        Engine              = app.getModule("engine/Engine"),
-        Commands            = app.getModule("command/Commands"),
-        CommandManager      = app.getModule("command/CommandManager"),
-        MenuManager         = app.getModule("menu/MenuManager"),
-        Dialogs             = app.getModule("dialogs/Dialogs"),
+    var AppInit = app.getModule("utils/AppInit"),
+        Repository = app.getModule("core/Repository"),
+        Engine = app.getModule("engine/Engine"),
+        Commands = app.getModule("command/Commands"),
+        CommandManager = app.getModule("command/CommandManager"),
+        MenuManager = app.getModule("menu/MenuManager"),
+        Dialogs = app.getModule("dialogs/Dialogs"),
         ElementPickerDialog = app.getModule("dialogs/ElementPickerDialog"),
-        FileSystem          = app.getModule("filesystem/FileSystem"),
-        FileSystemError     = app.getModule("filesystem/FileSystemError"),
-        ExtensionUtils      = app.getModule("utils/ExtensionUtils"),
-        UML                 = app.getModule("uml/UML");
+        FileSystem = app.getModule("filesystem/FileSystem"),
+        FileSystemError = app.getModule("filesystem/FileSystemError"),
+        ExtensionUtils = app.getModule("utils/ExtensionUtils"),
+        UML = app.getModule("uml/UML");
 
-    var CodeGenUtils        = require("CodeGenUtils"),
-        TypeScriptPreferences   = require("TypeScriptPreferences"),
+    var CodeGenUtils = require("CodeGenUtils"),
+        TypeScriptPreferences = require("TypeScriptPreferences"),
         TypeScriptCodeGenerator = require("TypeScriptCodeGenerator"),
         TypeScriptReverseEngineer = require("TypeScriptReverseEngineer");
 
     /**
      * Commands IDs
      */
-    var CMD_TYPESCRIPT              = "typescript",
-        CMD_TYPESCRIPT_GENERATE     = "typescript.generate",
-        CMD_TYPESCRIPT_REVERSE      = "typescript.reverse",
-        CMD_TYPESCRIPT_CONFIGURE    = "typescript.configure";
+    var CMD_TYPESCRIPT = "typescript",
+        CMD_TYPESCRIPT_GENERATE = "typescript.generate",
+        CMD_TYPESCRIPT_REVERSE = "typescript.reverse",
+        CMD_TYPESCRIPT_CONFIGURE = "typescript.configure";
 
     /**
      * Command Handler for TypeScript Generate
@@ -154,10 +154,10 @@ define(function (require, exports, module) {
     }
 
     // Register Commands
-    CommandManager.register("TypeScript",               CMD_TYPESCRIPT,           CommandManager.doNothing);
-    CommandManager.register("Generate Code...", CMD_TYPESCRIPT_GENERATE,  _handleGenerate);
-    CommandManager.register("Reverse Code...",  CMD_TYPESCRIPT_REVERSE,   _handleReverse);
-    CommandManager.register("Configure...",     CMD_TYPESCRIPT_CONFIGURE, _handleConfigure);
+    CommandManager.register("TypeScript", CMD_TYPESCRIPT, CommandManager.doNothing);
+    CommandManager.register("Generate Code...", CMD_TYPESCRIPT_GENERATE, _handleGenerate);
+    CommandManager.register("Reverse Code...", CMD_TYPESCRIPT_REVERSE, _handleReverse);
+    CommandManager.register("Configure...", CMD_TYPESCRIPT_CONFIGURE, _handleConfigure);
 
     var menu, menuItem;
     menu = MenuManager.getMenu(Commands.TOOLS);
