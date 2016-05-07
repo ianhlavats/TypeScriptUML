@@ -22,7 +22,7 @@
  */
 
 /*jslint vars: true, plusplus: true, devel: true, nomen: true, indent: 4, maxerr: 50, regexp: true */
-/*global define, $, _, window, app, type, document, csharp */
+/*global define, $, _, window, app, type, document, typescript */
 
 define(function (require, exports, module) {
     "use strict";
@@ -863,8 +863,8 @@ define(function (require, exports, module) {
      */
     function generate(baseModel, basePath, options) {
         var result = new $.Deferred();
-        var csharpCodeGenerator = new CsharpCodeGenerator(baseModel, basePath);
-        return csharpCodeGenerator.generate(baseModel, basePath, options);
+        var typescriptCodeGenerator = new TypeScriptCodeGenerator(baseModel, basePath);
+        return typescriptCodeGenerator.generate(baseModel, basePath, options);
     }
 
     exports.generate = generate;
