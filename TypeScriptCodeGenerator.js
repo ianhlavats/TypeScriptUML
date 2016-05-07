@@ -44,7 +44,7 @@ define(function (require, exports, module) {
      * @param {type.UMLPackage} baseModel
      * @param {string} basePath generated files and directories to be placed
      */
-    function CsharpCodeGenerator(baseModel, basePath) {
+    function TypeScriptCodeGenerator(baseModel, basePath) {
 
         /** @member {type.Model} */
         this.baseModel = baseModel;
@@ -59,7 +59,7 @@ define(function (require, exports, module) {
      * @param {Object} options
      * @return {string}
      */
-    CsharpCodeGenerator.prototype.getIndentString = function (options) {
+    TypeScriptCodeGenerator.prototype.getIndentString = function (options) {
         if (options.useTab) {
             return "\t";
         } else {
@@ -78,7 +78,7 @@ define(function (require, exports, module) {
      * @param {Object} options
      * @return {$.Promise}
      */
-    CsharpCodeGenerator.prototype.generate = function (elem, path, options) {
+    TypeScriptCodeGenerator.prototype.generate = function (elem, path, options) {
         var result = new $.Deferred(),
             self = this,
             fullPath,
@@ -192,7 +192,7 @@ define(function (require, exports, module) {
      * @param {type.Model} elem
      * @param {Object} options
      */
-    CsharpCodeGenerator.prototype.writeNamespace = function (writeFunction, codeWriter, elem, options) {
+    TypeScriptCodeGenerator.prototype.writeNamespace = function (writeFunction, codeWriter, elem, options) {
         var path = null;
         if (elem._parent) {
             path = _.map(elem._parent.getPath(this.baseModel), function (e) { return e.name; }).join(".");
@@ -223,7 +223,7 @@ define(function (require, exports, module) {
      * @param {type.Model} elem
      * @param {Object} options
      */
-    CsharpCodeGenerator.prototype.writeEnum = function (codeWriter, elem, options) {
+    TypeScriptCodeGenerator.prototype.writeEnum = function (codeWriter, elem, options) {
 
 
         var i, len, terms = [];
@@ -261,7 +261,7 @@ define(function (require, exports, module) {
      * @param {type.Model} elem
      * @param {Object} options
      */
-    CsharpCodeGenerator.prototype.writeInterface = function (codeWriter, elem, options) {
+    TypeScriptCodeGenerator.prototype.writeInterface = function (codeWriter, elem, options) {
 
 
         var i, len, terms = [];
@@ -347,7 +347,7 @@ define(function (require, exports, module) {
      * @param {type.Model} elem
      * @param {Object} options
      */
-    CsharpCodeGenerator.prototype.writeAnnotationType = function (codeWriter, elem, options) {
+    TypeScriptCodeGenerator.prototype.writeAnnotationType = function (codeWriter, elem, options) {
 
 
 
@@ -465,7 +465,7 @@ define(function (require, exports, module) {
      * @param {type.Model} elem
      * @param {Object} options
      */
-    CsharpCodeGenerator.prototype.writeClass = function (codeWriter, elem, options) {
+    TypeScriptCodeGenerator.prototype.writeClass = function (codeWriter, elem, options) {
 
 
         var i, len, terms = [];
@@ -582,7 +582,7 @@ define(function (require, exports, module) {
      * @param {boolean} skipBody
      * @param {boolean} skipParams
      */
-    CsharpCodeGenerator.prototype.writeMethod = function (codeWriter, elem, options, skipBody, skipParams) {
+    TypeScriptCodeGenerator.prototype.writeMethod = function (codeWriter, elem, options, skipBody, skipParams) {
         if (elem.name.length > 0) {
             var terms = [];
             var params = elem.getNonReturnParameters();
@@ -676,7 +676,7 @@ define(function (require, exports, module) {
      * @return {string}
      */
 
-    CsharpCodeGenerator.prototype.getType = function (elem) {
+    TypeScriptCodeGenerator.prototype.getType = function (elem) {
         var _type = "void";
         // type name
         if (elem instanceof type.UMLAssociationEnd) {
@@ -715,7 +715,7 @@ define(function (require, exports, module) {
      * @param {Object} options
      */
 
-    CsharpCodeGenerator.prototype.writeMemberVariable = function (codeWriter, elem, options) {
+    TypeScriptCodeGenerator.prototype.writeMemberVariable = function (codeWriter, elem, options) {
 
         if (elem.name.length > 0) {
             var terms = [];
@@ -745,7 +745,7 @@ define(function (require, exports, module) {
      * @param {type.Model} elem
      * @param {Object} options
      */
-    CsharpCodeGenerator.prototype.writeConstructor = function (codeWriter, elem, options) {
+    TypeScriptCodeGenerator.prototype.writeConstructor = function (codeWriter, elem, options) {
         if (elem.name.length > 0) {
             var terms = [];
             // Doc
@@ -767,7 +767,7 @@ define(function (require, exports, module) {
      * @param {string} text
      * @param {Object} options
      */
-    CsharpCodeGenerator.prototype.writeDoc = function (codeWriter, text, options) {
+    TypeScriptCodeGenerator.prototype.writeDoc = function (codeWriter, text, options) {
 
         var i, len, lines;
         if (options.tsharpDoc && _.isString(text)) {
@@ -786,7 +786,7 @@ define(function (require, exports, module) {
      * @param {type.Model} elem
      * @return {string}
      */
-    CsharpCodeGenerator.prototype.getVisibility = function (elem) {
+    TypeScriptCodeGenerator.prototype.getVisibility = function (elem) {
         switch (elem.visibility) {
         case UML.VK_PUBLIC:
             return "public";
@@ -803,7 +803,7 @@ define(function (require, exports, module) {
      * @param {type.Model} elem
      * @return {Array.<string>}
      */
-    CsharpCodeGenerator.prototype.getModifiers = function (elem) {
+    TypeScriptCodeGenerator.prototype.getModifiers = function (elem) {
         var modifiers = [];
         var visibility = this.getVisibility(elem);
         if (visibility) {
@@ -835,7 +835,7 @@ define(function (require, exports, module) {
      * @param {type.Model} elem
      * @return {Array.<type.Model>}
      */
-    CsharpCodeGenerator.prototype.getSuperClasses = function (elem) {
+    TypeScriptCodeGenerator.prototype.getSuperClasses = function (elem) {
         var generalizations = Repository.getRelationshipsOf(elem, function (rel) {
             return (rel instanceof type.UMLGeneralization && rel.source === elem);
         });
@@ -847,7 +847,7 @@ define(function (require, exports, module) {
      * @param {type.Model} elem
      * @return {Array.<type.Model>}
      */
-    CsharpCodeGenerator.prototype.getSuperInterfaces = function (elem) {
+    TypeScriptCodeGenerator.prototype.getSuperInterfaces = function (elem) {
         var realizations = Repository.getRelationshipsOf(elem, function (rel) {
             return (rel instanceof type.UMLInterfaceRealization && rel.source === elem);
         });
